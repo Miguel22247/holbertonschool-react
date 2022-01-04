@@ -1,22 +1,26 @@
+import React from 'react';
+import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import Notification from './Notifications';
+import Notifications from './Notifications';
 
-describe('Test Notification.js', () => {
-  it('Notification without crashing', (done) => {
-    expect(shallow(<Notification />).exists());
-    done();
+describe("Testing the <Notifications /> Component", () => {
+  
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<Notifications />);
   });
 
-  it('renders three list items', (done) => {
-    const wrapper = shallow(<Notification />);
-    expect(wrapper.find('ul')).to.have.lengthOf(1);
+  it("<Notifications /> is rendered without crashing", () => {
+    expect(wrapper).to.not.be.an('undefined');
+  });
+
+  it("<Notifications /> renders three list items", () => {
     expect(wrapper.find('li')).to.have.lengthOf(3);
-    done();
   });
 
-  it('renders the text "Here is the list of notifications"', (done) => {
-    const wrapper = shallow(<Notification />);
-    expect(wrapper.contains(<body className='App-body' />))
-    done();
+  it("<Notifications /> render the text 'Here is the list of notifications'", () => {
+    expect(wrapper.contains(<p>Here is the list of notifications</p>)).to.equal(true);
   });
+
 });
