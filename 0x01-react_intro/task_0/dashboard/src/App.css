@@ -23,6 +23,10 @@ div {
   border-bottom: 3px solid var(--holberton-red);
 }
 
+.App-header img {
+  width: 200px;
+}
+
 .App-header h1 {
   margin: auto auto auto 0;
   color: var(--holberton-red);
