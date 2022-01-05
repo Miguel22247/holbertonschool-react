@@ -14,6 +14,10 @@ module.exports = {
     compress: true,
     port: 8564,
   },
+  performance: {
+    maxAssetSize: 1000000,
+    maxEntrypointSize: 1000000,
+  },
   module: {
     rules: [
       {
