@@ -1,47 +1,38 @@
-const path = require("path");
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
-  entry: "./src/index.js",
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    filename: "bundle.js",
-    path: path.resolve("./dist"),
+    path: path.resolve(__dirname, '..', 'dist'),
+    filename: 'bundle.js'
   },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve("./dist"),
-    compress: true,
-    port: 8564,
-  },
-  performance: {
-    maxAssetSize: 1000000,
-    maxEntrypointSize: 1000000,
-  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      filename: 'index.html',
+      template: './dist/index.html'
+    })
+  ],
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: 'babel-loader'
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          "file-loader",
-          {
-            loader: "image-webpack-loader",
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
-          },
-        ],
-      },
-    ],
+          'file-loader',
+          { loader: 'image-webpack-loader', options: { disable: true } }
+        ]
+      }
+    ]
   },
+  devtool: 'inline-source-map'
 };
