@@ -1,29 +1,23 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import Adapter from 'enzyme-adapter-react-16';
-import { shallow, configure } from 'enzyme';
+
 import Login from './Login';
 
-configure({adapter: new Adapter()});
+describe('Login', () => {
+  test('renders without crashing', () => {
+    const wrapper = shallow(<Login />);
 
-describe("Testing the <Login /> Component", () => {
-	
-	let wrapper;
+    expect(wrapper.exists());
+  });
 
-	beforeEach(() => {
-		wrapper = shallow(<Login shouldRender />);
-	});
+  test('renders two input tags', () => {
+    const wrapper = shallow(<Login />);
 
-	it("<Login /> is rendered without crashing", () => {
-		expect(wrapper.render()).to.not.be.an('undefined');
-	});
+    const inputs = wrapper.find('input');
+    const labels = wrapper.find('label');
 
-	it("<Login /> render 2 inputs", () => {
-		expect(wrapper.find('input')).to.have.lengthOf(2);
-	});
-
-	it("<Login /> render 2 labels", () => {
-		expect(wrapper.find('label')).to.have.lengthOf(2);
-	});
-
+    expect(inputs).to.have.lengthOf(2);
+    expect(labels).to.have.lengthOf(2);;
+  });
 });
