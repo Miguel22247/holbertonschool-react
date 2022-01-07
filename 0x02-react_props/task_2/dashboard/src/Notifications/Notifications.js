@@ -33,8 +33,8 @@ const buttonStyle = {
 }
 
 const imageStyle = {
-  width: '.7rem',
-  height: '.7rem',
+  width: '1rem',
+  height: '1rem',
 }
 
 export default Notifications;
