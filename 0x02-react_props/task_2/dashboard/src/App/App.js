@@ -1,9 +1,9 @@
 import React from 'react';
 /* Components */
-import Login from '../Login/Login';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Notifications from '../Notifications/Notifications';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
 /* Styles */
 import './App.css';
 
@@ -12,11 +12,8 @@ function App() {
     <>
       <Notifications />
       <div className="App">
-        {/* Header */}
         <Header />
-        {/* Body */}
         <Login />
-        {/* Footer */}
         <Footer />
       </div>
     </>
