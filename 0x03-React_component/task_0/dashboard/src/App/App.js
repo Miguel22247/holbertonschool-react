@@ -6,6 +6,7 @@ import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import { getLatestNotification } from '../utils/utils';
+import './App.css';
 
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
