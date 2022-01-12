@@ -1,16 +1,16 @@
-.App-header {
-  border-bottom: 3px solid #E0434C;
+.header {
   display: flex;
+  color: #e0344a;
   align-items: center;
-  height: 162px;
+  border-bottom: thick solid #e0344a;
   width: 100%;
+  position: fixed;
 }
-.App-header img {
-  height: 159px;
-  width: 159px;
+
+.header img {
+  width: 144px;
 }
-.App-header h1 {
-  color: #E0434C;
-  font-weight: 900;
-  font-size: 2rem;
+
+.header h1 {
+  margin: 0;
 }

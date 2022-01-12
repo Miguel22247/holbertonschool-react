@@ -1,35 +1,17 @@
-:root {
-  --color-blue: #0000ff;
-  --color-red: #ff0000;
+.Notifications {
+  border: thin dotted #e0344a;
+  padding: 4px 16px;
+  float: right;
+}
+[data-notification-type='default'] {
+  color: blue;
 }
 
-.Notifications {
-  border: 2px dashed #E0434C;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  position: absolute;
-  right: 0;
+[data-notification-type='urgent'] {
+  color: red;
 }
 
 .menuItem {
   text-align: right;
-  margin-right: .5rem;
-}
-/* button:focus {
-  outline: none;
-} */
-ul {
-  padding-right: 3rem;
-}
-
-li {
-  margin-left: 2.5rem;
-
-}
-ul li[data-notification-type='default'] {
-  color: var(--color-blue);
-}
-
-ul li[data-notification-type='urgent'] {
-  color: var(--color-red);
+  margin-right: 16px;
 }

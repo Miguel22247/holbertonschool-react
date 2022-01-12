@@ -1,46 +1,44 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devtool: 'inline-source-map',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve('./dist'),
   },
-  performance: {
-    maxAssetSize: 1000000,
-    maxEntrypointSize: 1000000,
-  },
   devServer: {
     hot: true,
     contentBase: path.resolve('./dist'),
     compress: true,
-    port: 8564,
+    port: 3000,
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(jpg|png)$/i,
         use: [
           'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              bypassOnDebug: true,
+              disable: true,
             },
           },
         ],
+      },
+      {
+        test: /\.jsx?$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },

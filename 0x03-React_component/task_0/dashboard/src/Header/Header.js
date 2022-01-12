@@ -1,18 +1,13 @@
-import React, { Fragment } from 'react';
-import logo from '../assets/Holberton_logo.jpg';
+import React from 'react';
 import './Header.css';
-
+import logo from '../assets/holberton-logo.jpg';
 
 function Header() {
-  return(
-    <Fragment>
-      <div className="App-header">
-        <img src={logo} alt="logo" />
-        <h1>
-          School dashboard
-        </h1>
-      </div>
-    </Fragment>
+  return (
+    <header className='header'>
+      <img src={logo} alt='logo' />
+      <h1>School dashboard</h1>
+    </header>
   );
 }
 
