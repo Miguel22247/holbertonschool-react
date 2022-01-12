@@ -1,18 +1,11 @@
-.App-body {
-  margin-top: 4rem;
-  height: calc(100vh - 7rem - 162px);
+.login {
+  padding: 16px 24px;
+  margin-top: 160px;
 }
-.App-body p {
-  margin-left: 3rem;
-  margin-bottom: 1rem;
+.login input,
+.login button {
+  margin: 4px;
 }
-.App-body label:first-of-type {
-  margin-left: 3rem;
-}
-.App-body input {
-  margin: 0 1rem;
-  padding: .2rem 0;
-}
-.App-body button {
-  padding: .2rem .5rem;
+.login button {
+  cursor: pointer;
 }
