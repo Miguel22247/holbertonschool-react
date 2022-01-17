@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, css } from 'aphrodite';
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
   let tr = undefined;
 
   if (isHeader === true) {
     if (textSecondCell === null) {
-      tr = <th colSpan='2'>{textFirstCell}</th>;
+      tr = <th colSpan='2' style={{ backgroundColor: '#deb5b545'}}>{textFirstCell}</th>;
     } else {
       tr = (
         <Fragment>
@@ -28,6 +27,7 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
 
   return <tr>{tr}</tr>;
 };
+
 
 CourseListRow.defaultProps = {
   isHeader: false,
