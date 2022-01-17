@@ -62,7 +62,7 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   logOut: () => undefined,
 };
 
