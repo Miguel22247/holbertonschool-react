@@ -1,21 +1,22 @@
-import React from 'react';
+import React from "react";
 import { shallow } from 'enzyme';
 import BodySection from './BodySection';
 
-describe('<BodySection />', () => {
-  it('with children and heading', () => {
-    const wrapper = shallow(
-      <BodySection title='test title'>
-        <p>test children node</p>
-      </BodySection>
-    );
-    const div = wrapper.find('.bodySection').first();
-    const h2 = wrapper.find('h2');
-    const p = wrapper.find('p');
-    expect(div.exists()).toEqual(true);
-    expect(h2).toHaveLength(1);
-    expect(h2.text()).toEqual('test title');
-    expect(p).toHaveLength(1);
-    expect(p.text()).toEqual('test children node');
-  });
+describe('Basic React Tests - <BodySection />', function() {
+	it('Should render without crashing', () => {
+		const wrapper = shallow(<BodySection />);
+		expect(wrapper.exists()).toBeTruthy();
+	});
+
+	it('Should render correctly the children and one h2 element', () => {
+		const wrapper = shallow(
+			<BodySection title="test title">
+				<p>test children node</p>
+			</BodySection>
+		);
+		expect(wrapper.find('h2')).toHaveLength(1);
+		expect(wrapper.find('h2').text('test title')).toBeTruthy();
+		expect(wrapper.find('p')).toHaveLength(1);
+		expect(wrapper.find('p').text('test children node')).toBeTruthy();
+	});
 });
