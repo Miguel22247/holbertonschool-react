@@ -5,9 +5,9 @@ import Header from '../Header/Header';
 import Login from '../Login/Login';
 import BodySection from '../BodySection/BodySection';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import Notifications from '../Notifications/Notifications';
-import Footer from '../Footer/Footer';
 import { getLatestNotification } from '../utils/utils';
 
 const listCourses = [

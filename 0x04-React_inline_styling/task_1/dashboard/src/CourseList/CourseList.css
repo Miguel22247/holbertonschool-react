@@ -1,21 +1,13 @@
-.course-list {
-  width: 95%;
-  margin: auto;
-  margin-top: 200px;
-  border: 1px solid gray;
-  border-collapse: collapse;
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.course-list th[colspan='2'] {
+#CourseList th {
+  border-bottom: 1px solid lightgray;
+  height: 25px;
+  text-align: left;
+}
+
+#CourseList th[colspan='2'] {
   text-align: center;
-}
-
-.course-list th {
-  text-align: left;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-}
-
-.course-list td {
-  text-align: left;
 }
