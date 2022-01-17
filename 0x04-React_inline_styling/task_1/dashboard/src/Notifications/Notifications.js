@@ -5,7 +5,6 @@ import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItemShape from './NotificationItemShape';
-import './Notifications.css'
 
 class Notifications extends React.Component {
 	constructor(props) {
