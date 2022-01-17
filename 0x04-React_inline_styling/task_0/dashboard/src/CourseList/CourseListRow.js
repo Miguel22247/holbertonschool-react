@@ -1,55 +1,55 @@
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import React, { Fragment }from 'react';
 
-function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
-	const styleRow = { backgroundColor: '#f5f5f5ab' };
+const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
+  let tr = undefined;
+  const styleRow = { backgroundColor: '#f5f5f5ab' };
 	const styleHeaderRow = { backgroundColor: '#deb5b545' };
 
-	let myElement;
-	if (isHeader === true) {
-		if (textSecondCell === null) {
-			myElement = <th colSpan="2">{textFirstCell}</th>;
-		} else {
-			myElement = (
-				<Fragment>
-					<th>{textFirstCell}</th>
-					<th>{textSecondCell}</th>
-				</Fragment>
-			);
-		}
-	} else {
-		myElement = (
-			<Fragment>
-				<td>{textFirstCell}</td>
-				<td>{textSecondCell}</td>
-			</Fragment>
-		);
-	}
+  if (isHeader === true) {
+    if (textSecondCell === null) {
+      tr = <th colSpan='2'>{textFirstCell}</th>;
+    } else {
+      tr = (
+        <Fragment>
+          <th>{textFirstCell}</th>
+          <th>{textSecondCell}</th>
+        </Fragment>
+      );
+    }
+  } else {
+    tr = (
+      <Fragment>
+        <td>{textFirstCell}</td>
+        <td>{textSecondCell}</td>
+      </Fragment>
+    );
+  }
 
-	let stylesBackground;
+  let styleBackground;
 
-	if (isHeader) {
-		stylesBackground = styleHeaderRow;
-	} else {
-		stylesBackground = styleRow;
-	}
-	return (
-		<tr style={stylesBackground}>{myElement}</tr>
-	);
-}
+  if (isHeader) {
+    styleBackground = styleHeaderRow;
+  } else {
+    styleBackground = styleRow;
+  }
 
-CourseListRow.propTypes = {
-	isHeader: PropTypes.bool,
-	textFirstCell: PropTypes.string.isRequired,
-	textSecondCell: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number
-	])
+return <tr style={ styleBackground }>{tr}</tr>;
 };
 
+
 CourseListRow.defaultProps = {
-	isHeader: false,
-	textSecondCell: null
+  isHeader: false,
+  textSecondCell: null,
+};
+
+CourseListRow.propTypes = {
+  isHeader: PropTypes.bool,
+  textFirstCell: PropTypes.string.isRequired,
+  textSecondCell: PropTypes.oneOfType([
+    PropTypes.string, 
+    PropTypes.number
+  ]),
 };
 
 export default CourseListRow;
