@@ -27,15 +27,15 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
 		);
 	}
 
-	let stylesBackground;
+	let styleBackground;
 
 	if (isHeader) {
-		stylesBackground = styleHeaderRow;
+		styleBackground = styleHeaderRow;
 	} else {
-		stylesBackground = styleRow;
+		styleBackground = styleRow;
 	}
 	return (
-		<tr style={stylesBackground}>{myElement}</tr>
+		<tr style={ styleBackground }>{myElement}</tr>
 	);
 }
 
