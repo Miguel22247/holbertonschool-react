@@ -25,7 +25,10 @@ const listNotifications = [
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { displayDrawer: false };
     this.keyboardKeys = this.keyboardKeys.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
   }
 
   keyboardKeys(x) {
@@ -33,6 +36,14 @@ class App extends React.Component {
       alert('Logging you out');
       this.props.logOut();
     }
+  }
+
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+  }
+
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
   }
 
   componentDidMount() {
@@ -45,9 +56,16 @@ class App extends React.Component {
 
   render() {
     const { isLoggedIn, logOut } = this.props;
+    const { displayDrawer } = this.state;
+
     return (
       <React.Fragment>
-        <Notifications listNotifications={listNotifications}/>
+        <Notifications
+          listNotifications={listNotifications}
+          displayDrawer={displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer}
+          handleHideDrawer={this.handleHideDrawer}
+        />
         <div className={css(styles.App)}>
           <Header />
         </div>
@@ -66,7 +84,17 @@ class App extends React.Component {
         </div>
         <BodySection title="News from the School">
           <p>
-            Somebody that you loved.
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis
+            aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum.
           </p>
         </BodySection>
         <div className={css(styles.AppFooter)}>
@@ -86,9 +114,9 @@ const styles = StyleSheet.create({
 
   AppBody: {
     fontFamily: 'Arial, Helvetica, sans-serif',
+    height: '60vh',
     margin: 0,
-    padding: 0,
-    height: '60vh'
+    padding: 0
   },
 
   AppFooter: {

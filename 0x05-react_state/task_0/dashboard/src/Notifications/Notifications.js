@@ -13,7 +13,8 @@ class Notifications extends React.Component {
 
 	shouldComponentUpdate(newProps) {
 		return (
-			newProps.listNotifications.length > this.props.listNotifications.length
+			newProps.listNotifications.length > this.props.listNotifications.length ||
+			newProps.displayDrawer !== this.props.displayDrawer
 		);
 	}
 
@@ -22,16 +23,16 @@ class Notifications extends React.Component {
 	}
 
 	render() {
-		const { displayDrawer, listNotifications } = this.props;
+		const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
 		const displayMenu = displayDrawer ? styles.noDisplay : styles.menuItem;
 		return (
 			<React.Fragment>
-				<div className={css(displayMenu)}>
+				<div id='menuItem' className={css(displayMenu)} onClick={handleDisplayDrawer}>
 					Your notifications
 				</div>
 				{ displayDrawer &&
 					<div className={css(styles.notifications)}>
-						<button style={{background: 'transparent', float: 'right'}} aria-label='Close' onClick={() => console.log('Close button has been clicked')} >
+						<button id='closeButton' style={{background: 'transparent', float: 'right'}} aria-label='Close' onClick={handleHideDrawer} >
 							<img src={closeIcon} alt="close-icon" className={css(styles.notificationsButton)} />
 						</button>
 						<p>Here is the list of notifications</p>
@@ -157,12 +158,16 @@ const styles = StyleSheet.create({
 
 Notifications.propTypes = {
 	displayDrawer: PropTypes.bool,
-	listNotifications: PropTypes.arrayOf(NotificationItemShape)
+	listNotifications: PropTypes.arrayOf(NotificationItemShape),
+	handleDisplayDrawer: PropTypes.func,
+	handleHideDrawer: PropTypes.func
 };
 
 Notifications.defaultProps = {
 	displayDrawer: false,
-	listNotifications: []
+	listNotifications: [],
+	handleDisplayDrawer: () => {},
+	handleHideDrawer: () => {}
 };
 
 export default Notifications;
