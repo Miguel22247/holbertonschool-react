@@ -17,13 +17,15 @@ describe('Basic React Tests - <Login />', function() {
 		expect(wrapper.exists()).toBeTruthy();
 	});
 
-	// it('Should render 2 input tags', () => {
-	// 	const wrapper = shallow(<Login />);
-	// 	expect(wrapper.find('.Login input')).toHaveLength(2);
-	// });
+	it('Should check tha the submit button is disabled by default', () => {
+		const wrapper = shallow(<Login />);
+		expect(wrapper.find('input').at(2).props().disabled).toEqual(true);
+	});
 
-	// it('Should render 2 label tags', () => {
-	// 	const wrapper = shallow(<Login />);
-	// 	expect(wrapper.find('.Login label')).toHaveLength(2);
-	// });
+	it('Should check that after changing the value of the two inputs, the button is enabled', () => {
+		const wrapper = shallow(<Login />);
+		wrapper.find('input').at(0).simulate('change', { target: { name: 'email', value: 'mnortiz.ortiz@gmail.com'} });
+		wrapper.find('input').at(1).simulate('change', { target: { name: 'password', value: '012345'} });
+		expect(wrapper.find('input').at(2).props().disabled).toEqual(false);
+	});
 });
