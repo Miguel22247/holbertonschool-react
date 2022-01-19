@@ -105,7 +105,7 @@ describe('Basic React Tests - App Class', function() {
 
 	it('Should check that the logIn function updates the state correctly', () => {
 		const newUser = {
-			email: 'mnortiz.ortiz@gmail.com',
+			email: 'minipachru@gmail.com',
 			password: '012345',
 			isLoggedIn: true
 		};
@@ -130,5 +130,21 @@ describe('Basic React Tests - App Class', function() {
 		wrapper.instance().logIn('minipachru@gmail.com', '012345');
 		wrapper.instance().logOut();
 		expect(wrapper.state().user).toEqual(user);
+	});
+
+	it('Should check that markNotificationAsRead func works as intended', () => {
+		const notification = [
+			{ id: 1, type: 'default', value: 'New course available', },
+			{ id: 2, type: 'urgent', value: 'New resume available', },
+		];
+
+		const wrapper = mount(
+			<AppContext.Provider value={{ user, logOut }}>
+				<App />
+			</AppContext.Provider>
+		);
+
+		wrapper.instance().markNotificationAsRead(3);
+		expect(wrapper.state().listNotifications).toEqual(notification);
 	});
 });
