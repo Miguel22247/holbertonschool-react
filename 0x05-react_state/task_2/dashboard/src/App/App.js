@@ -9,6 +9,8 @@ import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import Notifications from '../Notifications/Notifications';
 import { getLatestNotification } from '../utils/utils';
+import { user, logOut } from './AppContext.js';
+import AppContext from './AppContext';
 
 const listCourses = [
   {id: 1, name: 'ES6', credit: 60},
@@ -25,10 +27,16 @@ const listNotifications = [
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { displayDrawer: false };
     this.keyboardKeys = this.keyboardKeys.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+    this.state = {
+      displayDrawer: false,
+      user: user,
+      logOut: this.logOut
+    };
   }
 
   keyboardKeys(x) {
@@ -46,6 +54,20 @@ class App extends React.Component {
     this.setState({ displayDrawer: false });
   }
 
+  logIn(email, password) {
+    this.setState({
+      user: {
+        email: email,
+        password: password,
+        isLoggedIn: true
+      },
+    });
+  }
+
+  logOut() {
+    this.setState({ user: user });
+  }
+
   componentDidMount() {
     document.addEventListener('keydown', this.keyboardKeys);
   }
@@ -55,11 +77,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, logOut } = this.props;
-    const { displayDrawer } = this.state;
+    const { displayDrawer, user, logOut } = this.state;
+    const value = { user, logOut };
 
     return (
-      <React.Fragment>
+      <AppContext.Provider value={value}>
         <Notifications
           listNotifications={listNotifications}
           displayDrawer={displayDrawer}
@@ -71,13 +93,13 @@ class App extends React.Component {
         </div>
         <div className={css(styles.AppBody)}>
           {
-            isLoggedIn ? (
+            user.isLoggedIn ? (
               <BodySectionWithMarginBottom title="Course list">
                 <CourseList listCourses={listCourses}/>
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login />
+                <Login logIn ={this.logIn} />
               </BodySectionWithMarginBottom>
             )
           }
@@ -100,7 +122,7 @@ class App extends React.Component {
         <div className={css(styles.AppFooter)}>
           <Footer />
         </div>
-      </React.Fragment>
+      </AppContext.Provider>
     );
   }
 }
@@ -131,14 +153,14 @@ const styles = StyleSheet.create({
   },
 });
 
-App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func
-};
+// App.propTypes = {
+//   isLoggedIn: PropTypes.bool,
+//   logOut: PropTypes.func
+// };
 
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {}
-};
+// App.defaultProps = {
+//   isLoggedIn: false,
+//   logOut: () => {}
+// };
 
 export default App;

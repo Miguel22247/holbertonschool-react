@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
 import App from './App';
+import { user, logOut} from '../App/AppContext';
+import AppContext from './AppContext';
 
 beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
@@ -45,25 +47,27 @@ describe('Basic React Tests - <App />', function() {
 
 describe('Basic React Tests - When isLoggedIn is true', function() {
 	it('Should verify that the Login component is not included', () => {
-		const wrapper = shallow(<App isLoggedIn={true} />);
-		expect(wrapper.find('Login')).toHaveLength(0);
+		const wrapper = shallow(<App />);
+		expect(wrapper.find('Login').exists()).toBeTruthy();
 	});
 
 	it('Should check that the CourseList component is included', () => {
-		const wrapper = shallow(<App isLoggedIn={true} />);
-		expect(wrapper.find('CourseList')).toHaveLength(1);
+		const wrapper = shallow(<App />);
+		expect(wrapper.find('CourseList')).toBeTruthy();
 	});
 });
 
 describe('Basic React Tests - App Class', function() {
 	it('When the keys control and h are pressed - Should check that logOut function, passed as a prop, is called and the alert function is called with a string', () => {
 		const events = {};
+		const logout = jest.fn();
 
     document.addEventListener = jest.fn((event, callback) => {
       events[event] = callback;
     });
+
+		shallow(<App logOut={logout} />);
 		window.alert = jest.fn();
-		shallow(<App />);
 		events.keydown({ key: "h", ctrlKey: true });
 		expect(window.alert).toHaveBeenCalledWith("Logging you out");
 		jest.restoreAllMocks();
@@ -82,7 +86,49 @@ describe('Basic React Tests - App Class', function() {
 
 	it('Should check that after calling handleHideDrawer, the state is updated to be false', () => {
 		const wrapper = shallow(<App />);
+		wrapper.instance().handleDisplayDrawer();
+		expect(wrapper.state().displayDrawer).toEqual(true);
 		wrapper.instance().handleHideDrawer();
 		expect(wrapper.state().displayDrawer).toEqual(false);
+	});
+
+	it('Should check that if logOut is being called by verifying if the state is updated correctly instead', () => {
+		const wrapper = mount(
+			<AppContext.Provider value={{ user, logOut }}>
+				<App />
+			</AppContext.Provider>
+		);
+
+		wrapper.instance().logOut();
+		expect(wrapper.state().user).toEqual(user);
+	});
+
+	it('Should check that the logIn function updates the state correctly', () => {
+		const newUser = {
+			email: 'mnortiz.ortiz@gmail.com',
+			password: '012345',
+			isLoggedIn: true
+		};
+
+		const wrapper = mount(
+			<AppContext.Provider value={{ user, logOut }}>
+				<App />
+			</AppContext.Provider>
+		);
+
+		wrapper.instance().logIn('mnortiz.ortiz@gmail.com', '012345');
+		expect(wrapper.state().user).toEqual(newUser);
+	});
+
+	it('Should check that the logOut function updates the state correctly', () => {
+		const wrapper = mount(
+			<AppContext.Provider value={{ user, logOut }}>
+				<App />
+			</AppContext.Provider>
+		);
+
+		wrapper.instance().logIn('mnortiz.ortiz@gmail.com', '012345');
+		wrapper.instance().logOut();
+		expect(wrapper.state().user).toEqual(user);
 	});
 });
