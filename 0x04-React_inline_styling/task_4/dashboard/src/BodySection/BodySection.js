@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite';
 
 class BodySection extends React.Component {
 	constructor(props) {
@@ -10,7 +11,7 @@ class BodySection extends React.Component {
 		const { title, children } = this.props;
 		return (
 			<React.Fragment>
-				<div className="bodySection">
+				<div className={css(styles.bodySection)}>
 					<h2>{title}</h2>
 					{children}
 				</div>
@@ -18,6 +19,13 @@ class BodySection extends React.Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	bodySection: {
+		fontFamily: 'Arial, Helvetica, sans-serif',
+		paddingLeft: '50px'
+	}
+});
 
 BodySection.propTypes = {
 	title: PropTypes.string

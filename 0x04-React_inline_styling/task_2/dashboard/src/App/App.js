@@ -1,4 +1,4 @@
-import React from 'react';
+import  React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import Header from '../Header/Header';
@@ -86,9 +86,9 @@ const styles = StyleSheet.create({
 
   AppBody: {
     fontFamily: 'Arial, Helvetica, sans-serif',
+    height: '60vh',
     margin: 0,
-    padding: 0,
-    height: '60vh'
+    padding: 0
   },
 
   AppFooter: {

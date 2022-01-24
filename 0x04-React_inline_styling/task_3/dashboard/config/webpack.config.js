@@ -1,45 +1,50 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  // APP ENTRY POINT
   entry: './src/index.js',
+
+  // OUTPUT DIRECTORY
   output: {
     filename: 'bundle.js',
     path: path.resolve('./dist'),
   },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve('./dist'),
-    compress: true,
-    port: 3000,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(jpg|png)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true,
-              disable: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.jsx?$/i,
+
+	devtool: 'inline-source-map',
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"]
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							disable: true,
+							bypassOnDebug: true
+						},
+					},
+				],
+			},
+			{
+				test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader"
         },
-      },
-    ],
+			}
+		]
+	},
+
+  // DEV SERVER ENTRY POINT
+  devServer: {
+		hot: true,
+		compress: true,
+		static: path.resolve('./dist'),
+		historyApiFallback: true
   },
 };

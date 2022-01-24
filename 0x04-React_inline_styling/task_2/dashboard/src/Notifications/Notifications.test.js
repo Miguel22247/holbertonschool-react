@@ -74,12 +74,12 @@ describe('Basic React Tests - <Notifications list />', function() {
 	it('Should check that Notifications renders correctly if pass an empty array', () => {
 		const newArray = [];
 		const wrapper = shallow(<Notifications displayDrawer listNotifications={newArray} />);
-		expect(wrapper.find('NotificationItem').html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
+		expect(wrapper.find('NotificationItem').html()).toEqual('<li data-notification-type="default" class="blue_1tsdo2i">No new notification for now</li>');
 	});
 
 	it('Should check that Notifications renders correctly if don’t pass the listNotifications property', () => {
 		const wrapper = shallow(<Notifications displayDrawer={true} />);
-		expect(wrapper.find('NotificationItem').html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
+		expect(wrapper.find('NotificationItem').html()).toEqual('<li data-notification-type="default" class="blue_1tsdo2i">No new notification for now</li>');
 	});
 
 	it('When pass list of notifications - Should check that renders it correctly and with the right number of NotificationItem', () => {

@@ -1,7 +1,6 @@
 import React, { Fragment }from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItemShape from './NotificationItemShape';
@@ -32,10 +31,10 @@ class Notifications extends React.Component {
 				{ displayDrawer &&
 					<div className={css(styles.notifications)}>
 						<button style={{background: 'transparent', float: 'right'}} aria-label='Close' onClick={() => console.log('Close button has been clicked')} >
-							<img src={closeIcon} alt="close-icon" className={css(styles.notificationsbutton)} />
+							<img src={closeIcon} alt="close-icon" className={css(styles.notificationsButton)} />
 						</button>
 						<p>Here is the list of notifications</p>
-						<ul className={css(styles.notificationsul)}>
+						<ul className={css(styles.notificationsUl)}>
 							{
 								listNotifications.length === 0 &&
 									(<NotificationItem
@@ -81,14 +80,14 @@ const styles = StyleSheet.create({
 		left: '65%'
 	},
 
-	notificationsbutton: {
+	notificationsButton: {
 		width: '20px',
 		border: 'none',
 		background: 'none',
 		cursor: 'pointer'
 	},
 
-	notificationsul: {
+	notificationsUl: {
 		paddingTop: '15px',
 		paddingLeft: '40px'
 	}

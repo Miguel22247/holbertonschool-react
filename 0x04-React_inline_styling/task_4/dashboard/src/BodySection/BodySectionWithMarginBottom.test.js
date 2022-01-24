@@ -27,12 +27,12 @@ describe('Basic React Tests - <BodySectionWithMarginBottom />', function() {
     expect(wrapper.find("BodySection").props().title).toEqual('title');
 	});
 
-	// it("Should check that the CSS is correctly applied to BodySectionWithMarginBottom", () => {
-  //   const wrapper = shallow(
-  //     <BodySectionWithMarginBottom title="title">
-  //       <p>children</p>
-  //     </BodySectionWithMarginBottom>
-  //   );
-  //   expect(wrapper.find(".bodySectionWithMargin").first().exists()).toEqual(true);
-  // });
+	it("Should check that the CSS is correctly applied to BodySectionWithMarginBottom", () => {
+    const wrapper = shallow(
+      <BodySectionWithMarginBottom title="title">
+        <p>children</p>
+      </BodySectionWithMarginBottom>
+    );
+    //expect(wrapper.find(".bodySectionWithMargin").first().exists()).toEqual(true);
+  });
 });
