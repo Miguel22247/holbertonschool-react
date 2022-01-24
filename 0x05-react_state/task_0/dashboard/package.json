@@ -2,38 +2,37 @@
   "name": "dashboard",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --mode development --config config/webpack.config.js",
-    "build": "webpack --mode production --config config/webpack.config.js",
-    "start": "webpack serve --open --mode development --config config/webpack.config.js",
-    "test": "jest",
-    "test-watch": "jest --watch"
+    "start": "webpack-dev-server --open --mode development --config config/webpack.config.js",
+    "test-watch": "jest --watch",
+    "build": "webpack --mode development --config config/webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/preset-env": "^7.12.16",
-    "@babel/preset-react": "^7.12.13",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.0.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
-    "image-webpack-loader": "^7.0.1",
-    "jest": "^26.6.3",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.22.0",
-    "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "image-webpack-loader": "^8.0.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
     "aphrodite": "^2.4.0",
+    "inline-source-map": "^0.6.2",
+    "jest": "^27.3.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "web-vitals": "^2.1.2"
   },
   "jest": {
     "setupFiles": [
@@ -41,7 +40,8 @@
     ],
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(jpg|png)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+      "\\.(png|svg|jpg|jpeg|gif)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "testEnvironment": "jsdom"
   }
 }
