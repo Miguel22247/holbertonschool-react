@@ -12,3 +12,7 @@
 .bodySection table {
   margin: 0 auto;
 }
+
+.bodySectionWithMargin {
+  margin-bottom: 40px;
+}
